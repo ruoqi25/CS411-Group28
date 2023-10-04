@@ -1,0 +1,15 @@
+﻿Proposal 1 - Book To Movie Recommendation System:
+
+
+This first project proposal aims to create a sophisticated book-to-movie recommendation system that helps users discover movies based on their book preferences. The system will utilize a database to store user profiles and recommendations, correlate data from publicly available sources, and offer a seamless and personalized experience. It will have a decoupled architecture with a RESTful API interface, and users can log in using third-party authentication services. The project correlates data from two publicly available sources via integrated book data from Goodreads API and movie data from IMDb API.
+
+
+
+
+Proposal 2 - Real Estate Investment Analyzer:
+
+
+This web-based application assists individuals in making informed decisions about real estate investments. It employs a decoupled architecture, comprising a front-end and back-end that communicate through a RESTful API interface. To access the platform, users must log in using OAuth third-party authentication services like Google or Facebook, and their profile information is stored in a database, doubling as a cache for frequently accessed data.
+
+
+The application correlates data from two publicly available datasets via APIs, such as Zillow's API for property listings and historical real estate market data from the Federal Housing Finance Agency (FHFA). Users can input their investment criteria, including location preferences, budget, and investment goals. The application then uses this information to recommend potential properties, estimate ROI, and forecast property value trends.
