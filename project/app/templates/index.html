@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book to Movie Recommendation System</title>
+    <style>
+        /* Add your CSS styling here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            text-align: center;
+            color: #666;
+            font-size: 18px;
+        }
+
+        .recommendation {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .recommendation p {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .recommendation:last-child {
+            margin-bottom: 0;
+        }
+
+        a {
+            color: #ff6f61;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .login-link a {
+            color: #ff6f61;
+        }
+
+        .input-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        label {
+            font-size: 18px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button[type="submit"] {
+            background-color: #ff6f61;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="flash-messages">
+        {% for message in messages %}
+        <div class="alert alert-warning">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+    {% if user %}
+        <h2>Hello, {{ user.name }}!</h2>
+        <p><a href="{{ url_for('main.logout') }}">Logout</a></p>
+    {% else %}
+    <div class="container">
+        <h1>Book to Movie Recommendation System</h1>
+        <p>Explore our recommendations for books that have been adapted into movies.</p>
+
+        <div class="recommendation">
+            <h2>The Hobbit</h2>
+            <p>Book by J.R.R. Tolkien</p>
+            <p>Movie directed by Peter Jackson</p>
+            <p>A fantastic journey through Middle-earth awaits you in both the book and the movie adaptation of "The Hobbit."</p>
+        </div>
+
+        <div class="recommendation">
+            <h2>Harry Potter and the Sorcerer's Stone</h2>
+            <p>Book by J.K. Rowling</p>
+            <p>Movie directed by Chris Columbus</p>
+            <p>Step into the magical world of Harry Potter as you read the book and watch the film adaptation.</p>
+        </div>
+
+        <div class="recommendation">
+            <h2>The Great Gatsby</h2>
+            <p>Book by F. Scott Fitzgerald</p>
+            <p>Movie directed by Baz Luhrmann</p>
+            <p>Experience the glamour and tragedy of the 1920s in this classic novel and its visually stunning movie adaptation.</p>
+        </div>
+    </div>
+        <p class="login-link">Please <a href="{{ url_for('main.login') }}">login</a> to access the book-to-movie recommendation system.</p>
+    {% endif %}
+    {% if user %}
+        <div class="container input-container">
+            <h2>Get a Movie Recommendation</h2>
+            <form action="{{ url_for('main.book_to_movie') }}" method="POST">
+                <label for="bookName">Enter Your Nick Name:</label>
+                <input type="text" id="bookName" name="bookName" required>
+                <button type="submit">Get Recommendation</button>
+            </form>
+        </div>
+    {% endif %}
+</body>
+</html>

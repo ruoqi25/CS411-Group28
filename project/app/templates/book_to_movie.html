@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Book-Movie Recommendation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <style>
+        /* Additional inline styles for a fancier look */
+        body {
+            background-color: #f6f6f6;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        header a {
+            color: #ff6f61;
+            text-decoration: none;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button[type="submit"] {
+            background-color: #ff6f61;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .item-box {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.5;
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Your Book-Movie Recommendation</h1>
+        <a href="{{ url_for('main.index') }}">Home</a>
+    </header>
+    <main>
+        <form method="post" action="{{ url_for('main.book_to_movie') }}">
+            <label for="book">Enter a Book:</label>
+            <input type="text" name="book" id="book" required>
+            <button type="submit">Generate Movie Adaptation</button>
+        </form>
+        
+        {% if book_data %}
+            <h2>Book</h2>
+            <div class="item-box">
+                <p><strong>Title:</strong> {{ book_data['volumeInfo']['title'] }}</p>
+                <p><strong>Author:</strong> {{ book_data['volumeInfo']['authors'] }}</p>
+                <p><strong>Description:</strong> {{ book_data['volumeInfo']['description'] }}</p>
+            </div>
+        {% endif %}
+
+        {% if movie_data %}
+            <h2>Movie Adaptation</h2>
+            <div class="item-box">
+                <p><strong>Movie Title:</strong> {{ movie_data.title}}</p>
+                <p><strong>Movie Overview:</strong> {{ movie_data.overview }}</p>
+                <p><strong>Movie Release Date:</strong> {{ movie_data.release_date}}</p>
+                <p><strong>Rating:</strong> {{ movie_data.vote_average}}</p>
+            </div>
+        {% endif %}
+    </main>
+</body>
+</html>
